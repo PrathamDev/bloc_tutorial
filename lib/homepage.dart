@@ -1,4 +1,6 @@
 import 'package:bloc_tutorial/bloc.dart';
+import 'package:bloc_tutorial/bloc/bloc_actions.dart';
+import 'package:bloc_tutorial/bloc/person_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,17 +24,23 @@ class _HomePageState extends State<HomePage> {
             children: [
               TextButton(
                 onPressed: () {
-                  context
-                      .read<PersonsBloc>()
-                      .add(const LoadPersonsAction(url: PersonUrl.person1));
+                  context.read<PersonsBloc>().add(
+                        const LoadPersonsAction(
+                          url: persons1Url,
+                          loader: getPerson,
+                        ),
+                      );
                 },
                 child: const Text('Load json #1'),
               ),
               TextButton(
                 onPressed: () {
-                  context
-                      .read<PersonsBloc>()
-                      .add(const LoadPersonsAction(url: PersonUrl.person2));
+                  context.read<PersonsBloc>().add(
+                        const LoadPersonsAction(
+                          url: persons2Url,
+                          loader: getPerson,
+                        ),
+                      );
                 },
                 child: const Text('Load json #2'),
               ),
